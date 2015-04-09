@@ -1,6 +1,8 @@
 /**
  * Created by zhuol on 4/9/2015.
  */
+import static java.lang.System.*;
+
 public class Trie {
     private Node root;
 
@@ -26,13 +28,13 @@ public class Trie {
             if(current.child[(int)(s.charAt(i)-'a')] != null)  // Revisit
             {
                 current = current.child[(int)(s.charAt(i)-'a')];
-                System.out.println("Inserted character: "+ current.content);
+                out.println("Inserted character: "+ current.content);
             }
             else  		// First visit
             {
                 current.child[(int)(s.charAt(i)-'a')] = new Node((int)(s.charAt(i)-'a'));
                 current = current.child[(int)(s.charAt(i)-'a')];
-                System.out.println("Inserted character: "+ current.content);
+                out.println("Inserted character: "+ current.content);
             }
             // Place a marker to indicate end of the word
             if(i==s.length()-1)
@@ -44,7 +46,7 @@ public class Trie {
     public boolean search(String s)
     {
         Node current = root;
-        System.out.println("\nSearching for string: "+s);
+        out.println("\nSearching for string: "+s);
 
         while(current != null)
         {
@@ -52,13 +54,13 @@ public class Trie {
             {
                 if(current.child[(int)(s.charAt(i)-'a')] == null)
                 {
-                    System.out.println("Cannot find string: "+s);
+                    out.println("Cannot find string: "+s);
                     return false;
                 }
                 else
                 {
                     current = current.child[(int)(s.charAt(i)-'a')];
-                    System.out.println("Found character: "+ current.content);
+                    out.println("Found character: "+ current.content);
                 }
             }
             // If we are here, the string exists.
@@ -66,12 +68,12 @@ public class Trie {
 
             if (current.marker == true)
             {
-                System.out.println("Found string: "+s);
+                out.println("Found string: "+s);
                 return true;
             }
             else
             {
-                System.out.println("Cannot find string: "+s +"(only present as a substring)");
+                out.println("Cannot find string: "+s +"(only present as a substring)");
                 return false;
             }
         }
