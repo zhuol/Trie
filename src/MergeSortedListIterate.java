@@ -5,31 +5,31 @@ import java.util.*;
  */
 public class MergeSortedListIterate {
     public static Iterable<Integer> MergeKSortedIterators(List<Iterator<Integer>> Iters) {
-        Queue<newIter> minHeap = new PriorityQueue<newIter>();
+        Queue<newIterator> minHeap = new PriorityQueue<newIterator>();
         List<Integer> result = new ArrayList<Integer>();
-        for (Iterator<Integer> iter : Iters) {
-            if (iter.hasNext()) {
-                minHeap.add(new newIter(iter.next(), iter));
+        for (Iterator<Integer> iterator : Iters) {
+            if (iterator.hasNext()) {
+                minHeap.add(new newIterator(iterator.next(), iterator));
             }
         }
 
         while (!minHeap.isEmpty()) {
-            newIter newiter = minHeap.poll();
-            result.add(newiter.getValue());
-            if (newiter.hasNext()) {
-                minHeap.add(newiter);
+            newIterator newiterator = minHeap.poll();
+            result.add(newiterator.getValue());
+            if (newiterator.hasNext()) {
+                minHeap.add(newiterator);
             }
         }
         return result;
     }
 
-    private static class newIter implements Comparable<newIter> {
+    private static class newIterator implements Comparable<newIterator> {
         private Integer value;
-        private Iterator<Integer> iter;
+        private Iterator<Integer> iterator;
 
-        public newIter(Integer val, Iterator<Integer> it) {
+        public newIterator(Integer val, Iterator<Integer> it) {
             this.value = val;
-            this.iter = it;
+            this.iterator = it;
         }
 
         public Integer getValue() {
@@ -37,23 +37,21 @@ public class MergeSortedListIterate {
         }
 
         public boolean hasNext() {
-            if (iter.hasNext()) {
-                value = iter.next();
+            if (iterator.hasNext()) {
+                value = iterator.next();
                 return true;
             }
             return false;
         }
 
-        public int compareTo(newIter a) {
-            return this.value - a.value;
+        public int compareTo(newIterator newiterator) {
+            return this.value - newiterator.value;
         }
     }
 
     public static void main(String[] args){
-        final MergeSortedListIterate mergeSortedListIterate=new MergeSortedListIterate();
-        List<Iterator<Integer>> list = new ArrayList<Iterator<Integer>>(
-        );
+        List<Iterator<Integer>> list = new ArrayList<Iterator<Integer>>();
 
-        mergeSortedListIterate.MergeKSortedIterators(list);
+        new MergeSortedListIterate().MergeKSortedIterators(list);
     }
 }
